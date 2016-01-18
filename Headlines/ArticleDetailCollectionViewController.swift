@@ -58,6 +58,16 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Sharing
+    @IBAction func shareButtonClicked(sender: UIBarButtonItem) {
+        
+        if let shareUrl = self.currentArticle?.webUrl {
+            
+            let activityVC = UIActivityViewController(activityItems: [shareUrl], applicationActivities: nil)
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
+    
     //MARK: Favouriting
     
     @IBAction func addRemoveFavourite(sender:UIBarButtonItem) {

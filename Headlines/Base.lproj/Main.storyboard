@@ -191,6 +191,7 @@
                                                         <constraint firstItem="jpi-be-wHB" firstAttribute="leading" secondItem="5Jj-l4-igw" secondAttribute="leading" constant="8" id="8DY-7u-ADs"/>
                                                         <constraint firstItem="yoF-Zm-wWb" firstAttribute="top" secondItem="3v7-xM-bgG" secondAttribute="bottom" id="Ajc-I2-1Qx"/>
                                                         <constraint firstAttribute="trailing" secondItem="f25-xF-pOQ" secondAttribute="trailing" id="BeN-Qn-AkY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="yoF-Zm-wWb" secondAttribute="trailing" constant="8" id="Br0-ih-rGi"/>
                                                         <constraint firstItem="3v7-xM-bgG" firstAttribute="top" secondItem="eJY-Ji-2kj" secondAttribute="bottom" constant="8" id="ERN-P0-V1C"/>
                                                         <constraint firstAttribute="trailing" secondItem="eJY-Ji-2kj" secondAttribute="trailing" constant="8" id="T36-rm-5iS"/>
                                                         <constraint firstAttribute="bottom" secondItem="jpi-be-wHB" secondAttribute="bottom" constant="8" id="Z0J-hs-XBv"/>
@@ -198,7 +199,6 @@
                                                         <constraint firstItem="eJY-Ji-2kj" firstAttribute="top" secondItem="f25-xF-pOQ" secondAttribute="bottom" constant="8" id="don-ar-z8q"/>
                                                         <constraint firstAttribute="trailing" secondItem="3v7-xM-bgG" secondAttribute="trailing" constant="8" id="f0P-Yp-pQP"/>
                                                         <constraint firstItem="jpi-be-wHB" firstAttribute="top" secondItem="yoF-Zm-wWb" secondAttribute="bottom" constant="16" id="qyD-R1-ftk"/>
-                                                        <constraint firstAttribute="trailing" secondItem="yoF-Zm-wWb" secondAttribute="trailing" constant="8" id="vKH-Xl-pCv"/>
                                                         <constraint firstItem="eJY-Ji-2kj" firstAttribute="leading" secondItem="5Jj-l4-igw" secondAttribute="leading" constant="8" id="z2J-N2-XuF"/>
                                                     </constraints>
                                                 </view>
@@ -242,7 +242,17 @@
                                 <action selector="addRemoveFavourite:" destination="gVy-xW-lPm" id="j5m-2o-LVh"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2wF-7G-3j2"/>
+                        <barButtonItem width="534" id="TWC-Sz-fmU"/>
+                        <barButtonItem image="guardianLogo" id="MZi-5g-zkI"/>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="sKB-0D-YBL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="mFZ-M6-a6G">
+                            <connections>
+                                <action selector="shareButtonClicked:" destination="gVy-xW-lPm" id="6Uq-Ge-P2X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="favButton" destination="PLh-mv-mHi" id="Rxo-Ly-FN1"/>
@@ -270,6 +280,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="guardianLogo" width="72" height="22"/>
         <image name="noFavIcon" width="22" height="22"/>
     </resources>
 </document>

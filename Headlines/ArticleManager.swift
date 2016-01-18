@@ -41,7 +41,7 @@ class ArticleManager: Manager {
         super.init()
         
         self.articles = self.realm.objects(Article).sorted("publishDate", ascending: false)
-        self.favouriteArticles = self.realm.objects(Article).filter("isFavourite == 1")
+        self.favouriteArticles = self.realm.objects(Article).filter("isFavourite == 1").sorted("favouritedDate", ascending: false)
     }
 
     //MARK: Object Creation
@@ -79,6 +79,7 @@ class ArticleManager: Manager {
     func addRemoveFromFavourites(article article:Article) {
         try! self.realm.write {
             article.isFavourite = !article.isFavourite
+            article.favouritedDate = NSDate()
         }
     }
     

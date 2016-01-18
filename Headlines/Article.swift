@@ -25,6 +25,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     dynamic var isFavourite = false
 
     dynamic var publishDate:NSDate?
+    dynamic var favouritedDate:NSDate?
     
     override static func primaryKey() -> String? {
         return "id"

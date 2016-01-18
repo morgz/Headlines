@@ -25,6 +25,9 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         self.scrollView.contentInset = insets
         self.scrollView.scrollIndicatorInsets = insets
         
+        /**
+        Style some shizzle
+        */
         self.titleLabel.font = HeadlineStyleKit.articleDetailTitleFont()
         self.bodyLabel.font = HeadlineStyleKit.articleDetailBodyFont()
         
@@ -59,15 +62,25 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         
         self.bodyLabel.attributedText = attrString
         
+        
+        //
+        // Now set the other details
+        //
         self.categoryLabel.text = article.sectionName
         
-        if let date = article.publishDate {
-            self.dateLabel.text = date.toString(.Custom("EEEE dd/MM/YYYY"))
+        let readTime = "\(Int(round(article.bodyText.readingTime()))) \(NSLocalizedString("mins read", comment: "Time it takes to read in mins"))"
+
+        if let date = article.publishDate, dateString = date.toString(.Custom("EEEE dd/MM/YYYY")) {
+            self.dateLabel.text = dateString + "  |  " + readTime
+        }
+        else {
+            self.dateLabel.text = readTime
         }
         
         if let urlString = article.imageUrlString {
             self.articleImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: nil)
         }
+        
         
     }
     
