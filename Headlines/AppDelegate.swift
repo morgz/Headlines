@@ -83,3 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIViewController {
+    var uiRealm:Realm {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return delegate.uiRealm
+    }
+}
+

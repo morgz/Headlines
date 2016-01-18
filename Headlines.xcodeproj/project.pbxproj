@@ -11,6 +11,7 @@
 		1B680A4C1C4D04C900FFF595 /* GuardianAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B680A4B1C4D04C900FFF595 /* GuardianAPIManager.swift */; };
 		1B680A4F1C4D060B00FFF595 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B680A4E1C4D060B00FFF595 /* Manager.swift */; };
 		1B680A511C4D065300FFF595 /* ArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B680A501C4D065300FFF595 /* ArticleManager.swift */; };
+		1B680A561C4D0E6000FFF595 /* ArticlesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B680A551C4D0E6000FFF595 /* ArticlesTableViewController.swift */; };
 		1BF0ACC71C4D00EC005C2461 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF0ACC61C4D00EC005C2461 /* AppDelegate.swift */; };
 		1BF0ACC91C4D00EC005C2461 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF0ACC81C4D00EC005C2461 /* ViewController.swift */; };
 		1BF0ACCC1C4D00EC005C2461 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BF0ACCA1C4D00EC005C2461 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		1B680A4B1C4D04C900FFF595 /* GuardianAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuardianAPIManager.swift; sourceTree = "<group>"; };
 		1B680A4E1C4D060B00FFF595 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		1B680A501C4D065300FFF595 /* ArticleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleManager.swift; sourceTree = "<group>"; };
+		1B680A551C4D0E6000FFF595 /* ArticlesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableViewController.swift; sourceTree = "<group>"; };
 		1BF0ACC31C4D00EC005C2461 /* Headlines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF0ACC61C4D00EC005C2461 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF0ACC81C4D00EC005C2461 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		1B680A521C4D0E1500FFF595 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B680A551C4D0E6000FFF595 /* ArticlesTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		1BF0ACBA1C4D00EC005C2461 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +147,7 @@
 		1BF0ACC51C4D00EC005C2461 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				1B680A521C4D0E1500FFF595 /* Controllers */,
 				1B680A4D1C4D05EA00FFF595 /* Managers */,
 				1B680A4A1C4D041D00FFF595 /* APIs */,
 				1B680A471C4D03AC00FFF595 /* Models */,
@@ -373,6 +384,7 @@
 				1B680A4C1C4D04C900FFF595 /* GuardianAPIManager.swift in Sources */,
 				1B680A511C4D065300FFF595 /* ArticleManager.swift in Sources */,
 				1B680A4F1C4D060B00FFF595 /* Manager.swift in Sources */,
+				1B680A561C4D0E6000FFF595 /* ArticlesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
