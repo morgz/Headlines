@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftDate
 
 final class Article: Object, ResponseObjectSerializable, ResponseCollectionSerializable {
     
@@ -18,7 +19,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     dynamic var apiUrl = ""
     dynamic var sectionId = ""
     dynamic var sectionName = ""
-    dynamic var imageUrlString = ""
+    dynamic var imageUrlString: String?
     dynamic var imageCaption = ""
 
     dynamic var publishDate:NSDate?
@@ -61,6 +62,11 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
         
         if let object = representation.valueForKeyPath("webUrl") as? String {
             self.webUrl = object
+        }
+        
+        //Date
+        if let dateString = representation.valueForKeyPath("webPublicationDate") as? String, date = dateString.toDate(DateFormat.ISO8601)  {
+            self.publishDate = date
         }
         
         //Image URL

@@ -56,7 +56,7 @@ class ArticlesTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ArticleTableViewCell
         
         guard let articles = self.articles else {
             return cell
@@ -65,7 +65,7 @@ class ArticlesTableViewController: UITableViewController {
         let article = articles[indexPath.item]
         
         // Configure the cell...
-        cell.textLabel?.text = article.title
+        cell.formatWith(article: article)
 
         return cell
     }
@@ -105,6 +105,10 @@ class ArticlesTableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 125.0
+    }
 
     /*
     // MARK: - Navigation
