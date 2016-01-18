@@ -9,7 +9,15 @@
 import Foundation
 
 extension String {
-    func removeHTMLTags() -> String {
-        return self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+    
+    func removeHTMLTags(keepParagraphs: Bool = true) -> String {
+        
+        var string = self
+        
+        if keepParagraphs {
+            string = self.stringByReplacingOccurrencesOfString("</p> <p>", withString: "\n\n")
+        }
+        
+        return string.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
     }
 }
