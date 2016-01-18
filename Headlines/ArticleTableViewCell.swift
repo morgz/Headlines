@@ -22,6 +22,13 @@ class ArticleTableViewCell: UITableViewCell {
         // Initialization code
         self.categoryLabel.textColor = UIColor(hexString: "F77600")
         self.dateLabel.textColor = UIColor(hexString: "818B8E")
+        
+        //Set our custom fonts
+        self.mainLabel.font = UIFont(name: "Lato-Regular", size: 16.0)
+        self.categoryLabel.font = UIFont(name: "Merriweather-Light", size: 12.0)
+        self.dateLabel.font = UIFont(name: "Merriweather-Light", size: 11.0)
+
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

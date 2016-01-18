@@ -48,6 +48,11 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         self.reloadData()
     }
     
+    override func viewDidLayoutSubviews() {
+        NSLog("Top:\(self.topLayoutGuide.length)  Bottom:\(self.bottomLayoutGuide.length)")
+
+    }
+    
     func reloadData() {
         self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
         self.collectionView?.reloadData()

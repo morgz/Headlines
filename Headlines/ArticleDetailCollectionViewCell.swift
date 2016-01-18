@@ -13,6 +13,23 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    override func awakeFromNib() {
+        
+        // Automatically adjusting the insets only works if scrollview is at index 0 of controller :(
+        // Not quite right... but will have to do for now.
+        let insets = UIEdgeInsets(top: 44.0, left: 0, bottom: 44.0, right: 0)
+        self.scrollView.contentInset = insets
+        self.scrollView.scrollIndicatorInsets = insets
+        
+        self.titleLabel.font = UIFont(name: "Lato-Regular", size: 25.0)
+        self.bodyLabel.font = UIFont(name: "Merriweather-Light", size: 16.0)
+    }
+    
+    override func prepareForReuse() {
+        self.scrollView.setContentOffset(CGPointMake(0, -self.scrollView.contentInset.top), animated: false)
+    }
     
     func formatWith(article article:Article) {
         

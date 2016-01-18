@@ -113,7 +113,7 @@
             <objects>
                 <collectionViewController id="gVy-xW-lPm" customClass="ArticleDetailCollectionViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7UH-Sa-oqp">
-                        <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="35Z-qx-QZG">
                             <size key="itemSize" width="600" height="538"/>
@@ -123,7 +123,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ArticleDetailCell" id="c1G-1y-saN" customClass="ArticleDetailCollectionViewCell" customModule="Headlines" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-23" width="600" height="538"/>
+                                <rect key="frame" x="0.0" y="41" width="600" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
@@ -133,7 +133,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jj-l4-igw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="298"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="306"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f25-xF-pOQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
@@ -151,7 +151,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpi-be-wHB">
-                                                            <rect key="frame" x="8" y="269" width="584" height="21"/>
+                                                            <rect key="frame" x="8" y="277" width="584" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" priority="250" constant="75" id="Dgt-Ul-QeM"/>
                                                             </constraints>
@@ -165,14 +165,13 @@
                                                         <constraint firstAttribute="height" priority="250" constant="352" id="2AS-Ts-lNa"/>
                                                         <constraint firstItem="f25-xF-pOQ" firstAttribute="leading" secondItem="5Jj-l4-igw" secondAttribute="leading" id="2mh-7q-TRK"/>
                                                         <constraint firstAttribute="trailing" secondItem="f25-xF-pOQ" secondAttribute="trailing" id="BeN-Qn-AkY"/>
-                                                        <constraint firstItem="jpi-be-wHB" firstAttribute="top" secondItem="eJY-Ji-2kj" secondAttribute="bottom" constant="8" id="Jh8-lS-fE8"/>
                                                         <constraint firstAttribute="trailing" secondItem="eJY-Ji-2kj" secondAttribute="trailing" constant="8" id="T36-rm-5iS"/>
                                                         <constraint firstAttribute="trailing" secondItem="jpi-be-wHB" secondAttribute="trailing" constant="8" id="Xji-0T-HhO"/>
                                                         <constraint firstAttribute="bottom" secondItem="jpi-be-wHB" secondAttribute="bottom" constant="8" id="ZFm-lw-Agi"/>
                                                         <constraint firstItem="f25-xF-pOQ" firstAttribute="top" secondItem="5Jj-l4-igw" secondAttribute="top" id="arn-jn-pWO"/>
                                                         <constraint firstItem="eJY-Ji-2kj" firstAttribute="top" secondItem="f25-xF-pOQ" secondAttribute="bottom" constant="8" id="don-ar-z8q"/>
                                                         <constraint firstItem="jpi-be-wHB" firstAttribute="leading" secondItem="5Jj-l4-igw" secondAttribute="leading" constant="8" id="e9Q-xg-hP1"/>
-                                                        <constraint firstItem="jpi-be-wHB" firstAttribute="top" secondItem="eJY-Ji-2kj" secondAttribute="bottom" constant="8" id="fAd-LF-Kbe"/>
+                                                        <constraint firstItem="jpi-be-wHB" firstAttribute="top" secondItem="eJY-Ji-2kj" secondAttribute="bottom" constant="16" id="fAd-LF-Kbe"/>
                                                         <constraint firstItem="eJY-Ji-2kj" firstAttribute="leading" secondItem="5Jj-l4-igw" secondAttribute="leading" constant="8" id="z2J-N2-XuF"/>
                                                     </constraints>
                                                 </view>
@@ -198,6 +197,7 @@
                                 <connections>
                                     <outlet property="articleImageView" destination="f25-xF-pOQ" id="zKI-3m-RuX"/>
                                     <outlet property="bodyLabel" destination="jpi-be-wHB" id="Exu-bO-fzU"/>
+                                    <outlet property="scrollView" destination="cij-CO-SlM" id="H6F-fb-AeD"/>
                                     <outlet property="titleLabel" destination="eJY-Ji-2kj" id="wQR-YZ-3Cl"/>
                                 </connections>
                             </collectionViewCell>
@@ -207,7 +207,6 @@
                             <outlet property="delegate" destination="gVy-xW-lPm" id="S6K-zu-45T"/>
                         </connections>
                     </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems>
                         <barButtonItem image="noFavIcon" id="PLh-mv-mHi">
                             <connections>
