@@ -203,7 +203,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.93717174734307673" green="0.91914665574641607" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="top" secondItem="cij-CO-SlM" secondAttribute="top" id="Gv4-aE-bAQ"/>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="width" secondItem="cij-CO-SlM" secondAttribute="width" id="Yem-Wj-FtD"/>
@@ -243,7 +243,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2wF-7G-3j2"/>
-                        <barButtonItem width="534" id="TWC-Sz-fmU"/>
                         <barButtonItem image="guardianLogo" id="MZi-5g-zkI"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="sKB-0D-YBL">

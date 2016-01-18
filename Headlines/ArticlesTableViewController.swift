@@ -21,11 +21,11 @@ class ArticlesTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationController?.hidesBarsOnSwipe = true
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
 
         //Get our initial remote items
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        //self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+
         self.refreshControl?.beginRefreshing()
         
         ArticleManager.sharedInstance.getRemoteArticles { (response) -> Void in
@@ -41,10 +41,9 @@ class ArticlesTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        //Add a Pull To Refresh
-        //self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func reloadData() {

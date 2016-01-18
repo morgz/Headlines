@@ -136,6 +136,15 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(self.collectionView!.frame.size.width, self.collectionView!.frame.size.height)
     }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.collectionView?.collectionViewLayout.invalidateLayout()
+        
+        //To force the colelction view to refresh, just need to give it a nudge
+        if let indexPath = self.currentIndexPath {
+            self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
+        }
+    }
 
     // MARK: UICollectionViewDelegate
 
