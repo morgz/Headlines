@@ -114,8 +114,8 @@
         <scene sceneID="Zhq-ES-7MS">
             <objects>
                 <collectionViewController id="gVy-xW-lPm" customClass="ArticleDetailCollectionViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="7UH-Sa-oqp">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="7UH-Sa-oqp">
+                        <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="35Z-qx-QZG">
                             <size key="itemSize" width="600" height="538"/>
@@ -125,7 +125,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ArticleDetailCell" id="c1G-1y-saN" customClass="ArticleDetailCollectionViewCell" customModule="Headlines" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-1" width="600" height="538"/>
+                                <rect key="frame" x="0.0" y="-23" width="600" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
@@ -179,7 +179,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.59785096259114168" green="0.56237838741614699" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.93717174734307673" green="0.91914665574641607" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="top" secondItem="cij-CO-SlM" secondAttribute="top" id="Gv4-aE-bAQ"/>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="width" secondItem="cij-CO-SlM" secondAttribute="width" id="Yem-Wj-FtD"/>
@@ -210,6 +210,17 @@
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems>
+                        <barButtonItem image="noFavIcon" id="PLh-mv-mHi">
+                            <connections>
+                                <action selector="addRemoveFavourite:" destination="gVy-xW-lPm" id="j5m-2o-LVh"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favButton" destination="PLh-mv-mHi" id="Rxo-Ly-FN1"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQU-E0-y05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,4 +243,7 @@
             <point key="canvasLocation" x="459" y="203"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="noFavIcon" width="22" height="22"/>
+    </resources>
 </document>

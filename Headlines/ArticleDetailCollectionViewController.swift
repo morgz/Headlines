@@ -14,17 +14,29 @@ private let reuseIdentifier = "ArticleDetailCell"
 class ArticleDetailCollectionViewController: UICollectionViewController {
     
     var articles : Results<Article>?
-    var currentIndexPath:NSIndexPath?
+    
+    var currentIndexPath:NSIndexPath? {
+        didSet {
+            if let articles = self.articles, indexPath = self.currentIndexPath {
+                self.currentArticle = articles[indexPath.item]
+                self.formatFavouriteButton()
+            }
+        }
+    }
 
+    var currentArticle: Article?
+
+    @IBOutlet weak var favButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     
-        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRemoveFavourite:")
-        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
-        toolbarItems = [add, spacer]
+//        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRemoveFavourite:")
+//        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+//        toolbarItems = [add, spacer]
         navigationController?.setToolbarHidden(false, animated: false)
 
         // Register cell classes
@@ -45,11 +57,18 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     
     //MARK: Favouriting
     
-    func addRemoveFavourite(sender:UIBarButtonItem) {
+    @IBAction func addRemoveFavourite(sender:UIBarButtonItem) {
         if let articles = self.articles, indexPath = self.currentIndexPath {
-            
             let article = articles[indexPath.item]
             ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
+            self.formatFavouriteButton()
+        }
+    }
+    
+    func formatFavouriteButton() {
+        
+        if let article = self.currentArticle {
+            self.favButton.image = article.isFavourite ? UIImage(named: "favIcon") : UIImage(named: "noFavIcon")
         }
     }
 
@@ -98,7 +117,6 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         cell.formatWith(article: article)
         
         return cell
-    
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
