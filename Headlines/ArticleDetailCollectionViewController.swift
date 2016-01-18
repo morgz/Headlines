@@ -38,6 +38,10 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
     
         navigationController?.setToolbarHidden(false, animated: false)
+        
+        //Set the title
+        self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("All Articles", comment: "All Articles") :
+                                                                         NSLocalizedString("Favourites", comment: "Favourites")
 
         // Register cell classes
 

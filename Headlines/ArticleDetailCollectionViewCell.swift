@@ -38,8 +38,16 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         // Unfortunately this was too slow
         //self.bodyLabel.attributedText = article.bodyTextAsHtmlAttributedString()
         
+        //Set the Body label. Increase the line spacing to make it more readable.
         
-        self.bodyLabel.text = article.bodyText
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 2.5
+        
+        let attrString = NSMutableAttributedString(string: article.bodyText)
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        
+        self.bodyLabel.attributedText = attrString
+        
         //self.categoryLabel.text = article.sectionName
         
 //        if let date = article.publishDate {
