@@ -23,8 +23,8 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         self.scrollView.contentInset = insets
         self.scrollView.scrollIndicatorInsets = insets
         
-        self.titleLabel.font = UIFont(name: "Lato-Regular", size: 25.0)
-        self.bodyLabel.font = UIFont(name: "Merriweather-Light", size: 16.0)
+        self.titleLabel.font = HeadlineStyleKit.articleDetailTitleFont()
+        self.bodyLabel.font = HeadlineStyleKit.articleDetailBodyFont()
     }
     
     override func prepareForReuse() {

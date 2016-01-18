@@ -20,14 +20,13 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.categoryLabel.textColor = UIColor(hexString: "F77600")
-        self.dateLabel.textColor = UIColor(hexString: "818B8E")
+        self.categoryLabel.textColor = HeadlineStyleKit.orange()
+        self.dateLabel.textColor = HeadlineStyleKit.grey()
         
         //Set our custom fonts
-        self.mainLabel.font = UIFont(name: "Lato-Regular", size: 16.0)
-        self.categoryLabel.font = UIFont(name: "Merriweather-Light", size: 12.0)
-        self.dateLabel.font = UIFont(name: "Merriweather-Light", size: 11.0)
-
+        self.mainLabel.font = HeadlineStyleKit.articleOverviewTitleFont()
+        self.categoryLabel.font = HeadlineStyleKit.articleOverviewCategoryFont()
+        self.dateLabel.font = HeadlineStyleKit.articleOverviewDateFont()
         
     }
 

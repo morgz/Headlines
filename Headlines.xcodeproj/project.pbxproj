@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0BA33F1C4D6D69004FA037 /* HeadlineStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BA33E1C4D6D68004FA037 /* HeadlineStyleKit.swift */; };
 		1B2B2D281C4D51BD00B5106B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2B2D271C4D51BD00B5106B /* String+Extensions.swift */; };
 		1B2B2D2A1C4D559100B5106B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2B2D291C4D559100B5106B /* UIColor+Extensions.swift */; };
 		1B2B2D2D1C4D5EEB00B5106B /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B2B2D2C1C4D5EEB00B5106B /* Lato-Regular.ttf */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		01F8FEBD11A091E63F48F085 /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
+		1B0BA33E1C4D6D68004FA037 /* HeadlineStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineStyleKit.swift; sourceTree = "<group>"; };
 		1B2B2D271C4D51BD00B5106B /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1B2B2D291C4D559100B5106B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		1B2B2D2C1C4D5EEB00B5106B /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		1BF0ACC51C4D00EC005C2461 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				1B0BA33E1C4D6D68004FA037 /* HeadlineStyleKit.swift */,
 				1B2B2D2B1C4D5ECD00B5106B /* Fonts */,
 				1B680A5C1C4D326800FFF595 /* Extensions */,
 				1B680A521C4D0E1500FFF595 /* Controllers & Views */,
@@ -464,6 +467,7 @@
 				1B2B2D2A1C4D559100B5106B /* UIColor+Extensions.swift in Sources */,
 				1B680A5E1C4D328100FFF595 /* UILabel+Extensions.swift in Sources */,
 				1B2B2D281C4D51BD00B5106B /* String+Extensions.swift in Sources */,
+				1B0BA33F1C4D6D69004FA037 /* HeadlineStyleKit.swift in Sources */,
 				1B680A4C1C4D04C900FFF595 /* GuardianAPIManager.swift in Sources */,
 				1B680A5B1C4D31EE00FFF595 /* ArticleTableViewCell.swift in Sources */,
 				1B680A601C4D39A800FFF595 /* ArticleDetailCollectionViewController.swift in Sources */,
