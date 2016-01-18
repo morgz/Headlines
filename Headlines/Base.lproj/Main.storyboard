@@ -97,6 +97,9 @@
                                 <segment title="All Articles"/>
                                 <segment title="Favourites"/>
                             </segments>
+                            <connections>
+                                <action selector="toggleFavourites:" destination="cd6-wm-2fP" eventType="valueChanged" id="634-um-rAk"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
@@ -112,7 +115,7 @@
             <objects>
                 <collectionViewController id="gVy-xW-lPm" customClass="ArticleDetailCollectionViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="7UH-Sa-oqp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="35Z-qx-QZG">
                             <size key="itemSize" width="600" height="538"/>
@@ -122,7 +125,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ArticleDetailCell" id="c1G-1y-saN" customClass="ArticleDetailCollectionViewCell" customModule="Headlines" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="63" width="600" height="538"/>
+                                <rect key="frame" x="0.0" y="-1" width="600" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
@@ -176,10 +179,11 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.59785096259114168" green="0.56237838741614699" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="top" secondItem="cij-CO-SlM" secondAttribute="top" id="Gv4-aE-bAQ"/>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="width" secondItem="cij-CO-SlM" secondAttribute="width" id="Yem-Wj-FtD"/>
-                                                <constraint firstAttribute="bottom" secondItem="5Jj-l4-igw" secondAttribute="bottom" constant="186" id="akZ-Uv-Xg8"/>
+                                                <constraint firstAttribute="bottom" secondItem="5Jj-l4-igw" secondAttribute="bottom" id="akZ-Uv-Xg8"/>
                                                 <constraint firstItem="5Jj-l4-igw" firstAttribute="leading" secondItem="cij-CO-SlM" secondAttribute="leading" id="dHN-fh-dBg"/>
                                                 <constraint firstAttribute="trailing" secondItem="5Jj-l4-igw" secondAttribute="trailing" id="x3d-3J-umt"/>
                                             </constraints>
@@ -205,6 +209,7 @@
                             <outlet property="delegate" destination="gVy-xW-lPm" id="S6K-zu-45T"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQU-E0-y05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

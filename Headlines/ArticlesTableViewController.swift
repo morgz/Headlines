@@ -13,9 +13,27 @@ private let reuseIdentifier = "ArticleCell"
 
 class ArticlesTableViewController: UITableViewController {
     
+    enum ArticlesMode: Int {
+        case All = 0
+        case Favourites
+    }
+    
     var articles : Results<Article>?
     var favouriteArticles : Results<Article>?
-    //var realmNotification:NotificationToken! //Keep an eye on when our data has changed
+    
+    var articlesToDisplay : Results<Article>? {
+        get {
+            if self.segmentedControl.selectedSegmentIndex == ArticlesMode.Favourites.rawValue {
+                return self.favouriteArticles
+            }
+            else {
+                return self.articles
+            }
+        }
+    }
+    
+    var realmNotification:NotificationToken! //Keep an eye on when our data has changed
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -27,6 +45,11 @@ class ArticlesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.reloadData()
+        
+        //If our data changes then reload it.
+        self.realmNotification = self.uiRealm.addNotificationBlock { notification, realm in
+            self.reloadData()
+        }
     }
     
     func reloadData() {
@@ -34,7 +57,9 @@ class ArticlesTableViewController: UITableViewController {
         self.favouriteArticles = uiRealm.objects(Article).filter("isFavourite == 1")
         
         //Set the title of the segmentedControl to show no. favs
-        self.segmentedControl.setTitle("\(favouriteArticles.count) Favourites", forSegmentAtIndex: 1)
+        if let favouriteArticles = self.favouriteArticles {
+            self.segmentedControl.setTitle("\(favouriteArticles.count) Favourites", forSegmentAtIndex: ArticlesMode.Favourites.rawValue)
+        }
         
         
         
@@ -44,6 +69,12 @@ class ArticlesTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func toggleFavourites(sender:UISegmentedControl) {
+        self.reloadData()
     }
 
     // MARK: - Table view data source
@@ -56,22 +87,22 @@ class ArticlesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        guard let articles = self.articles else {
+        guard let articlesToDisplay = self.articlesToDisplay else {
             return 0
         }
         
-        return articles.count
+        return articlesToDisplay.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ArticleTableViewCell
         
-        guard let articles = self.articles else {
+        guard let articlesToDisplay = self.articlesToDisplay else {
             return cell
         }
         
-        let article = articles[indexPath.item]
+        let article = articlesToDisplay[indexPath.item]
         
         // Configure the cell...
         cell.formatWith(article: article)
