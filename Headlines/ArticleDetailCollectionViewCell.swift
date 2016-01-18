@@ -15,7 +15,13 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bodyLabel: UILabel!
     
     func formatWith(article article:Article) {
+        
         self.titleLabel.text = article.title
+        
+        // Unfortunately this was too slow
+        //self.bodyLabel.attributedText = article.bodyTextAsHtmlAttributedString()
+        
+        
         self.bodyLabel.text = article.bodyText
         //self.categoryLabel.text = article.sectionName
         

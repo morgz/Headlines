@@ -15,6 +15,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     dynamic var id = ""
     dynamic var title = ""
     dynamic var bodyText = ""
+    dynamic var htmlBodyText = ""
     dynamic var webUrl = ""
     dynamic var apiUrl = ""
     dynamic var sectionId = ""
@@ -50,7 +51,9 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
         }
         
         if let object = representation.valueForKeyPath("fields")?.valueForKeyPath("body") as? String {
-            self.bodyText = object
+            self.htmlBodyText = object
+            //Also store a clean body Text without the HTML
+            self.bodyText = object.removeHTMLTags()
         }
         
         if let object = representation.valueForKeyPath("sectionName") as? String {
@@ -78,7 +81,25 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
             }
         }
         
-        //Date
+    }
+    
+    //MARK Dynamic Properties
+    
+    // Creates a HTML Attributed string from the html we get from guardian.
+    // Unfortunately this method is just too slow.
+    
+    func bodyTextAsHtmlAttributedString() -> NSAttributedString? {
+        
+        do {
+            let attrs = [ NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
+                NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding]
+            let attributedString = try NSAttributedString(data: self.bodyText.dataUsingEncoding(NSUTF8StringEncoding)!, options: attrs as! [String : AnyObject], documentAttributes: nil)
+            
+            return attributedString
+        }
+        catch {
+            return nil
+        }
     }
     
     //Creates multiple representations of an object

@@ -29,6 +29,7 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     func formatWith(article article:Article) {
+        
         self.mainLabel.text = article.title
         self.categoryLabel.text = article.sectionName
         
