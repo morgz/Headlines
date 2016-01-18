@@ -33,17 +33,12 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBarHidden = false
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-    
         navigationController?.setToolbarHidden(false, animated: false)
         
         //Set the title
         self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("All Articles", comment: "All Articles") :
                                                                          NSLocalizedString("Favourites", comment: "Favourites")
 
-        // Register cell classes
 
         // Do any additional setup after loading the view.
         self.reloadData()
@@ -61,6 +56,17 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Favouriting
+    
+    @IBAction func addRemoveFavourite(sender:UIBarButtonItem) {
+
+        if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
+            let article = articles[indexPath.item]
+            ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
+            self.formatFavouriteButton()
+        }
     }
     
     func formatFavouriteButton() {
