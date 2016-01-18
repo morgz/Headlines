@@ -17,9 +17,14 @@ final class Article: Object {
     
     dynamic var publishDate:NSDate?
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 // Specify properties to ignore (Realm won't persist these)
     
 //  override static func ignoredProperties() -> [String] {
 //    return []
 //  }
+
 }
