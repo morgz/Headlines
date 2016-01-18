@@ -14,6 +14,8 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     override func awakeFromNib() {
         
@@ -25,6 +27,13 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         
         self.titleLabel.font = HeadlineStyleKit.articleDetailTitleFont()
         self.bodyLabel.font = HeadlineStyleKit.articleDetailBodyFont()
+        
+        self.categoryLabel.font = HeadlineStyleKit.articleDetailSubtitleFont()
+        self.categoryLabel.textColor = HeadlineStyleKit.orange()
+
+        self.dateLabel.font = HeadlineStyleKit.articleDetailSubtitleFont()
+        self.dateLabel.textColor = HeadlineStyleKit.grey()
+
     }
     
     override func prepareForReuse() {
@@ -38,7 +47,9 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         // Unfortunately this was too slow
         //self.bodyLabel.attributedText = article.bodyTextAsHtmlAttributedString()
         
-        //Set the Body label. Increase the line spacing to make it more readable.
+        /// 
+        //
+        //  Set the Body label. Increase the line spacing to make it more readable.
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.5
@@ -48,11 +59,11 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         
         self.bodyLabel.attributedText = attrString
         
-        //self.categoryLabel.text = article.sectionName
+        self.categoryLabel.text = article.sectionName
         
-//        if let date = article.publishDate {
-//            self.dateLabel.text = date.toRelativeString(fromDate: NSDate(), abbreviated: false, maxUnits:2)
-//        }
+        if let date = article.publishDate {
+            self.dateLabel.text = date.toString(.Custom("EEEE dd/MM/YYYY"))
+        }
         
         if let urlString = article.imageUrlString {
             self.articleImageView.kf_setImageWithURL(NSURL(string: urlString)!, placeholderImage: nil)

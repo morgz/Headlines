@@ -163,6 +163,10 @@ class ArticlesTableViewController: UITableViewController {
         //Makes sure the collectionview takes us to the article chosen
         destinationController.initialIndexPath = self.tableView.indexPathForSelectedRow
         
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
     }
     
 

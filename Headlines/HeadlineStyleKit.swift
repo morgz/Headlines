@@ -37,6 +37,10 @@ class HeadlineStyleKit {
         return UIFont(name: "Merriweather-Light", size: 16.0)
     }
     
+    class func articleDetailSubtitleFont() -> UIFont? {
+        return UIFont(name: "Merriweather-Light", size: 12.0)
+    }
+    
     
     
     
