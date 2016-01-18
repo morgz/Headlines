@@ -11,7 +11,7 @@ import Alamofire
 
 class GuardianAPIManager: NSObject {
 
-    static let apiKey = "nj8pstqu5yat6yesfsdmd39"
+    static let apiKey = "enj8pstqu5yat6yesfsdmd39"
     static let baseURL = "http://content.guardianapis.com/"
     
     var manager:Alamofire.Manager!
@@ -35,13 +35,12 @@ extension GuardianAPIManager {
     
     
     func getFinTechArticles() -> Request {
+        
         return manager.request(.GET, GuardianAPIManager.baseURL+"search?q=fintech&show-fields=main,body"+"&api-key=\(GuardianAPIManager.apiKey)")
             .validate()
     }
     
 }
-
-
 
 
 //Mark: Generics can be used to provide automatic, type-safe response object serialization.
@@ -62,7 +61,7 @@ extension Request {
             case .Success(let value):
                 if let
                     response = response,
-                    responseObject = T(response: response, representation: value["response"])
+                    responseObject = T(response: response, representation: (value["response"]?["results"])!)
                 {
                     return .Success(responseObject)
                 } else {
@@ -95,7 +94,7 @@ extension Alamofire.Request {
             switch result {
             case .Success(let value):
                 if let response = response {
-                    return .Success(T.collection(response: response, representation: value["response"]))
+                    return .Success(T.collection(response: response, representation: (value["response"]?["results"])!))
                 } else {
                     let failureReason = "Response collection could not be serialized due to nil response"
                     let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)

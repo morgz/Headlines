@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class Article: Object {
+final class Article: Object, ResponseObjectSerializable, ResponseCollectionSerializable {
     
     dynamic var id = ""
     dynamic var title = ""
@@ -33,7 +33,7 @@ final class Article: Object {
         self.init()
         //self.username = response.URL!.lastPathComponent!
         self.id = representation.valueForKeyPath("id") as! String
-        self.title = representation.valueForKeyPath("title") as! String
+        self.title = representation.valueForKeyPath("webTitle") as! String
         
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 class ArticleManager: NSObject {
     
@@ -21,8 +22,18 @@ class ArticleManager: NSObject {
     }
     
     //Can add pagination and parameters later
-    func getArticles() {
-        GuardianAPIManager.sharedInstance.getFinTechArticles()
+    func getRemoteArticles() {
+        
+        GuardianAPIManager.sharedInstance.getFinTechArticles().responseCollection { (response: Response<[Article], NSError>) in
+            
+            switch response.result {
+            case .Success(let fetchedArticles):
+                print(fetchedArticles)
+                
+            case .Failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
