@@ -14,7 +14,13 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     dynamic var id = ""
     dynamic var title = ""
     dynamic var bodyText = ""
-    
+    dynamic var webUrl = ""
+    dynamic var apiUrl = ""
+    dynamic var sectionId = ""
+    dynamic var sectionName = ""
+    dynamic var imageUrl = ""
+    dynamic var imageCaption = ""
+
     dynamic var publishDate:NSDate?
     
     override static func primaryKey() -> String? {
@@ -27,13 +33,20 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
 //    return []
 //  }
     
-
+    
+    //TODO: Make this safer by checking for the return value before force unwrapping
     //Mark: Creating a representation from the API
     convenience required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.init()
         //self.username = response.URL!.lastPathComponent!
         self.id = representation.valueForKeyPath("id") as! String
         self.title = representation.valueForKeyPath("webTitle") as! String
+        self.bodyText = representation.valueForKeyPath("fields")?.valueForKeyPath("body") as! String
+        self.sectionName = representation.valueForKeyPath("sectionName") as! String
+        self.sectionId = representation.valueForKeyPath("sectionId") as! String
+        self.webUrl = representation.valueForKeyPath("webUrl") as! String
+        
+        //Date
         
     }
     
