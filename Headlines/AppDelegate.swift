@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Test getting our articles
         self.setupRealm()
-        ArticleManager.sharedInstance.getRemoteArticles()
         self.listAllFonts()
         
         return true

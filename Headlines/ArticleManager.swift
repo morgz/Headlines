@@ -57,7 +57,7 @@ class ArticleManager: Manager {
     
     //MARK: Guardian API Remote Methods
     //Can add pagination and parameters later
-    func getRemoteArticles() {
+    func getRemoteArticles(completion: (response: Response<[Article], NSError>) -> Void) {
         
         GuardianAPIManager.sharedInstance.getFinTechArticles().responseCollection { (response: Response<[Article], NSError>) in
             
@@ -69,6 +69,8 @@ class ArticleManager: Manager {
             case .Failure(let error):
                 print(error)
             }
+            
+            completion(response: response)
         }
     }
     

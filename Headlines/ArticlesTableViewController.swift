@@ -23,15 +23,28 @@ class ArticlesTableViewController: UITableViewController {
         self.navigationController?.hidesBarsOnSwipe = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //Get our initial remote items
+        self.refreshControl?.beginRefreshing()
+        
+        ArticleManager.sharedInstance.getRemoteArticles { (response) -> Void in
+            self.refreshControl?.endRefreshing()
+        }
+
+        // We may have some persisted
         self.reloadData()
         
         //If our data changes then reload it.
         self.realmNotification = self.uiRealm.addNotificationBlock { notification, realm in
             self.reloadData()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //Add a Pull To Refresh
+        //self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func reloadData() {
@@ -57,7 +70,14 @@ class ArticlesTableViewController: UITableViewController {
         ArticleManager.sharedInstance.articleMode = ArticlesMode(rawValue: sender.selectedSegmentIndex)!
         self.reloadData()
     }
-
+    
+    
+    func refresh(sender:UIRefreshControl) {
+        ArticleManager.sharedInstance.getRemoteArticles { (response) -> Void in
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
