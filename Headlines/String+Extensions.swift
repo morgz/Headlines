@@ -15,9 +15,10 @@ extension String {
         var string = self
         
         if keepParagraphs {
-            string = self.stringByReplacingOccurrencesOfString("</p> <p>", withString: "\n\n")
+            string = self.stringByReplacingOccurrencesOfString("</p>", withString: "\n\n")
         }
         
+        //Strip all html tags
         return string.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
     }
 }
