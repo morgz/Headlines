@@ -25,8 +25,7 @@ class Manager: NSObject {
 }
 
 
-//May need this code for updating healines and NOT updating certain fields. Possibly image.
-/*
+// Methods we use when updating our local articles from remote. We create a whitelist of the attribute we'll let the managers update
 extension Object {
     func updateAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
@@ -47,4 +46,3 @@ extension Object {
         return [String]()
     }
 }
-*/

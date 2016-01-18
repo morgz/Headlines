@@ -53,3 +53,12 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     }
 
 }
+
+
+// MARK: Controls the params that can updated via remote
+extension Article {
+    //Whitelists the params we're allowed to update from remote
+    override class func allowedAttributes() -> [String] {
+        return ["id","title","bodyText","publishDate"]
+    }
+}
