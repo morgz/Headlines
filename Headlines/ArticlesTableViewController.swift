@@ -21,6 +21,8 @@ class ArticlesTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBarHidden = false
+        navigationController?.setToolbarHidden(false, animated: false)
 
         //Get our initial remote items
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -43,7 +45,6 @@ class ArticlesTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func reloadData() {
