@@ -12,26 +12,7 @@ import RealmSwift
 private let reuseIdentifier = "ArticleCell"
 
 class ArticlesTableViewController: UITableViewController {
-    
-    enum ArticlesMode: Int {
-        case All = 0
-        case Favourites
-    }
-    
-    var articles : Results<Article>?
-    var favouriteArticles : Results<Article>?
-    
-    var articlesToDisplay : Results<Article>? {
-        get {
-            if self.segmentedControl.selectedSegmentIndex == ArticlesMode.Favourites.rawValue {
-                return self.favouriteArticles
-            }
-            else {
-                return self.articles
-            }
-        }
-    }
-    
+
     var realmNotification:NotificationToken! //Keep an eye on when our data has changed
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -54,11 +35,10 @@ class ArticlesTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
-        self.favouriteArticles = uiRealm.objects(Article).filter("isFavourite == 1")
+        
         
         //Set the title of the segmentedControl to show no. favs
-        if let favouriteArticles = self.favouriteArticles {
+        if let favouriteArticles = ArticleManager.sharedInstance.favouriteArticles {
             let count = favouriteArticles.count
             self.segmentedControl.setTitle("\(count) \(count == 1 ? "Favourite" : "Favourites")", forSegmentAtIndex: ArticlesMode.Favourites.rawValue)
         }
@@ -89,7 +69,7 @@ class ArticlesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        guard let articlesToDisplay = self.articlesToDisplay else {
+        guard let articlesToDisplay = ArticleManager.sharedInstance.articlesToDisplay else {
             return 0
         }
         
@@ -100,7 +80,7 @@ class ArticlesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ArticleTableViewCell
         
-        guard let articlesToDisplay = self.articlesToDisplay else {
+        guard let articlesToDisplay = ArticleManager.sharedInstance.articlesToDisplay else {
             return cell
         }
         

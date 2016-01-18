@@ -11,8 +11,27 @@ import UIKit
 import Alamofire
 import RealmSwift
 
+enum ArticlesMode: Int {
+    case All = 0
+    case Favourites
+}
+
 class ArticleManager: Manager {
     
+    var articles : Results<Article>?
+    var favouriteArticles : Results<Article>?
+    var articleMode = ArticlesMode.All
+    
+    var articlesToDisplay : Results<Article>? {
+        get {
+            if self.articleMode == ArticlesMode.Favourites {
+                return self.favouriteArticles
+            }
+            else {
+                return self.articles
+            }
+        }
+    }
     
     class var sharedInstance:ArticleManager {
         return ArticleManagerSharedInstance
@@ -20,6 +39,9 @@ class ArticleManager: Manager {
     
     override init() {
         super.init()
+        
+        self.articles = self.realm.objects(Article).sorted("publishDate", ascending: false)
+        self.favouriteArticles = self.realm.objects(Article).filter("isFavourite == 1")
     }
 
     //MARK: Object Creation
