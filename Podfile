@@ -7,6 +7,7 @@ target 'Headlines' do
 	pod 'Alamofire', '~> 3.1'
 	pod 'RealmSwift', '~> 0.97'
     pod "SwiftDate", "~> 2.0"
+    pod 'Kingfisher', '~> 1.9'
 end
 
 target 'HeadlinesTests' do
