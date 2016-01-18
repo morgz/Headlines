@@ -20,6 +20,11 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addTapped")
+        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+        toolbarItems = [add, spacer]
+        navigationController?.setToolbarHidden(false, animated: false)
 
         // Register cell classes
 
@@ -28,7 +33,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     }
     
     func reloadData() {
-        self.articles = uiRealm.objects(Article).sorted("id", ascending: false)
+        self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
         self.collectionView?.reloadData()
     }
 

@@ -28,7 +28,7 @@ class ArticlesTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        self.articles = uiRealm.objects(Article).sorted("id", ascending: false)
+        self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
         self.tableView.reloadData()
     }
 
