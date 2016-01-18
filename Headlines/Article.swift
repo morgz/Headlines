@@ -71,7 +71,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
             }
         }
         
-        
+        //Date
     }
     
     //Creates multiple representations of an object

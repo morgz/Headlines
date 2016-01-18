@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Headlines/Alamofire.framework"
   install_framework "Pods-Headlines/Realm.framework"
   install_framework "Pods-Headlines/RealmSwift.framework"
+  install_framework "Pods-Headlines/SwiftDate.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Headlines/Alamofire.framework"
   install_framework "Pods-Headlines/Realm.framework"
   install_framework "Pods-Headlines/RealmSwift.framework"
+  install_framework "Pods-Headlines/SwiftDate.framework"
 fi
