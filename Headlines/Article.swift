@@ -39,20 +39,38 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     convenience required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.init()
         
+        if let object = representation.valueForKeyPath("id") as? String {
+            self.id = object
+        }
         
-        //self.username = response.URL!.lastPathComponent!
-        self.id = representation.valueForKeyPath("id") as! String
-        self.title = representation.valueForKeyPath("webTitle") as! String
-        self.bodyText = representation.valueForKeyPath("fields")?.valueForKeyPath("body") as! String
-        self.sectionName = representation.valueForKeyPath("sectionName") as! String
-        self.sectionId = representation.valueForKeyPath("sectionId") as! String
-        self.webUrl = representation.valueForKeyPath("webUrl") as! String
+        if let object = representation.valueForKeyPath("webTitle") as? String {
+            self.title = object
+        }
         
-
-        //Image URl
-        let mainString = representation.valueForKeyPath("fields")?.valueForKeyPath("main") as! String
-        let imageUrl = mainString.extractURLString()
-        self.imageUrlString = imageUrl!.URLString
+        if let object = representation.valueForKeyPath("fields")?.valueForKeyPath("body") as? String {
+            self.bodyText = object
+        }
+        
+        if let object = representation.valueForKeyPath("sectionName") as? String {
+            self.sectionName = object
+        }
+        
+        if let object = representation.valueForKeyPath("sectionId") as? String {
+            self.sectionId = object
+        }
+        
+        if let object = representation.valueForKeyPath("webUrl") as? String {
+            self.webUrl = object
+        }
+        
+        //Image URL
+        if let object = representation.valueForKeyPath("fields")?.valueForKeyPath("main") as? String {
+            //Image URl
+            if let imageUrl = object.extractURLString() {
+                self.imageUrlString = imageUrl.URLString
+            }
+        }
+        
         
     }
     
