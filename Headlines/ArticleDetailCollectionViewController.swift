@@ -63,16 +63,6 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Favouriting
-    
-    @IBAction func addRemoveFavourite(sender:UIBarButtonItem) {
-        if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
-            let article = articles[indexPath.item]
-            ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
-            self.formatFavouriteButton()
-        }
-    }
-    
     func formatFavouriteButton() {
         
         if let article = self.currentArticle {
