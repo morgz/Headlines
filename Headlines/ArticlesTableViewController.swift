@@ -43,10 +43,6 @@ class ArticlesTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     func reloadData() {
         
         //Set the title of the segmentedControl to show no. favs
