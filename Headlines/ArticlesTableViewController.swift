@@ -14,7 +14,9 @@ private let reuseIdentifier = "ArticleCell"
 class ArticlesTableViewController: UITableViewController {
     
     var articles : Results<Article>?
+    var favouriteArticles : Results<Article>?
     //var realmNotification:NotificationToken! //Keep an eye on when our data has changed
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,13 @@ class ArticlesTableViewController: UITableViewController {
     
     func reloadData() {
         self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
+        self.favouriteArticles = uiRealm.objects(Article).filter("isFavourite == 1")
+        
+        //Set the title of the segmentedControl to show no. favs
+        self.segmentedControl.setTitle("\(favouriteArticles.count) Favourites", forSegmentAtIndex: 1)
+        
+        
+        
         self.tableView.reloadData()
     }
 

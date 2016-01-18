@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Articles-->
+        <!--Articles Table View Controller-->
         <scene sceneID="cgX-wf-f4r">
             <objects>
                 <tableViewController id="cd6-wm-2fP" customClass="ArticlesTableViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,7 +88,20 @@
                             <outlet property="delegate" destination="cd6-wm-2fP" id="zYZ-ad-TQe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Articles" id="V9b-Kp-Ahd"/>
+                    <navigationItem key="navigationItem" id="V9b-Kp-Ahd">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hOt-jf-EKo">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="All Articles"/>
+                                <segment title="Favourites"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="hOt-jf-EKo" id="O7z-M5-dBd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52M-54-X7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
