@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Article: Object {
+final class Article: Object {
     
     dynamic var id = ""
     dynamic var title = ""
