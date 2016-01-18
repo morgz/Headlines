@@ -38,7 +38,8 @@ class ArticlesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.hidesBarsOnSwipe = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -58,7 +59,8 @@ class ArticlesTableViewController: UITableViewController {
         
         //Set the title of the segmentedControl to show no. favs
         if let favouriteArticles = self.favouriteArticles {
-            self.segmentedControl.setTitle("\(favouriteArticles.count) Favourites", forSegmentAtIndex: ArticlesMode.Favourites.rawValue)
+            let count = favouriteArticles.count
+            self.segmentedControl.setTitle("\(count) \(count == 1 ? "Favourite" : "Favourites")", forSegmentAtIndex: ArticlesMode.Favourites.rawValue)
         }
         
         

@@ -40,7 +40,6 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="A day, blah blah, 2006" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-5C-ir4">
                                             <rect key="frame" x="17" y="86" width="503" height="21"/>
-                                            <color key="backgroundColor" red="0.39321685769999998" green="0.50767552910000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="DZQ-5U-668"/>
                                             </constraints>
@@ -50,7 +49,6 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfZ-NN-JwR">
                                             <rect key="frame" x="528" y="86" width="31" height="21"/>
-                                            <color key="backgroundColor" red="0.93137015950000002" green="0.38516385580000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Ijr-1e-Hxg"/>
                                             </constraints>
