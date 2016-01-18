@@ -36,15 +36,12 @@ class ArticlesTableViewController: UITableViewController {
     
     func reloadData() {
         
-        
         //Set the title of the segmentedControl to show no. favs
         if let favouriteArticles = ArticleManager.sharedInstance.favouriteArticles {
             let count = favouriteArticles.count
             self.segmentedControl.setTitle("\(count) \(count == 1 ? "Favourite" : "Favourites")", forSegmentAtIndex: ArticlesMode.Favourites.rawValue)
         }
-        
-        
-        
+    
         self.tableView.reloadData()
     }
 
@@ -56,6 +53,8 @@ class ArticlesTableViewController: UITableViewController {
     //MARK: Actions
     
     @IBAction func toggleFavourites(sender:UISegmentedControl) {
+        //Keep a track of our Article Mode in the manager
+        ArticleManager.sharedInstance.articleMode = ArticlesMode(rawValue: sender.selectedSegmentIndex)!
         self.reloadData()
     }
 
@@ -132,14 +131,19 @@ class ArticlesTableViewController: UITableViewController {
         return 125.0
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destinationController = segue.destinationViewController as! ArticleDetailCollectionViewController
+        
+        //Makes sure the collectionview takes us to the article chosen
+        destinationController.initialIndexPath = self.tableView.indexPathForSelectedRow
+        
     }
-    */
+    
 
 }

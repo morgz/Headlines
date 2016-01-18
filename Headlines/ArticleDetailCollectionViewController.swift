@@ -13,11 +13,11 @@ private let reuseIdentifier = "ArticleDetailCell"
 
 class ArticleDetailCollectionViewController: UICollectionViewController {
     
-    var articles : Results<Article>?
+    var initialIndexPath:NSIndexPath?
     
     var currentIndexPath:NSIndexPath? {
         didSet {
-            if let articles = self.articles, indexPath = self.currentIndexPath {
+            if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
                 self.currentArticle = articles[indexPath.item]
                 self.formatFavouriteButton()
             }
@@ -37,9 +37,6 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     
-//        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRemoveFavourite:")
-//        let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
-//        toolbarItems = [add, spacer]
         navigationController?.setToolbarHidden(false, animated: false)
 
         // Register cell classes
@@ -48,14 +45,13 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         self.reloadData()
     }
     
-    override func viewDidLayoutSubviews() {
-        NSLog("Top:\(self.topLayoutGuide.length)  Bottom:\(self.bottomLayoutGuide.length)")
-
-    }
-    
     func reloadData() {
-        self.articles = uiRealm.objects(Article).sorted("publishDate", ascending: false)
         self.collectionView?.reloadData()
+        
+        if let indexPath = self.initialIndexPath {
+            self.collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: false)
+            self.initialIndexPath = nil
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +62,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     //MARK: Favouriting
     
     @IBAction func addRemoveFavourite(sender:UIBarButtonItem) {
-        if let articles = self.articles, indexPath = self.currentIndexPath {
+        if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
             let article = articles[indexPath.item]
             ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
             self.formatFavouriteButton()
@@ -101,7 +97,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         
-        guard let articles = self.articles else {
+        guard let articles = ArticleManager.sharedInstance.articlesToDisplay else {
             return 0
         }
         
@@ -115,7 +111,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         self.currentIndexPath = indexPath
         
         // Configure the cell
-        guard let articles = self.articles else {
+        guard let articles = ArticleManager.sharedInstance.articlesToDisplay else {
             return cell
         }
         
