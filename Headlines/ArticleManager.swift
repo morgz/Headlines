@@ -50,6 +50,14 @@ class ArticleManager: Manager {
         }
     }
     
+    //Favouriting
+    
+    func addRemoveFromFavourites(article article:Article) {
+        try! self.realm.write {
+            article.isFavourite = !article.isFavourite
+        }
+    }
+    
     
     
 }

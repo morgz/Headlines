@@ -14,14 +14,15 @@ private let reuseIdentifier = "ArticleDetailCell"
 class ArticleDetailCollectionViewController: UICollectionViewController {
     
     var articles : Results<Article>?
+    var currentIndexPath:NSIndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
-        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addTapped")
+    
+        let add = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRemoveFavourite:")
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
         toolbarItems = [add, spacer]
         navigationController?.setToolbarHidden(false, animated: false)
@@ -40,6 +41,16 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Favouriting
+    
+    func addRemoveFavourite(sender:UIBarButtonItem) {
+        if let articles = self.articles, indexPath = self.currentIndexPath {
+            
+            let article = articles[indexPath.item]
+            ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
+        }
     }
 
     /*
@@ -72,7 +83,10 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ArticleDetailCollectionViewCell
-    
+        
+        //Set the current Index Path
+        self.currentIndexPath = indexPath
+        
         // Configure the cell
         guard let articles = self.articles else {
             return cell

@@ -21,6 +21,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
     dynamic var sectionName = ""
     dynamic var imageUrlString: String?
     dynamic var imageCaption = ""
+    dynamic var isFavourite = false
 
     dynamic var publishDate:NSDate?
     
