@@ -21,7 +21,7 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         
         // Automatically adjusting the insets only works if scrollview is at index 0 of controller :(
         // Not quite right... but will have to do for now.
-        let insets = UIEdgeInsets(top: 44.0, left: 0, bottom: 44.0, right: 0)
+        let insets = UIEdgeInsets(top: 52.0, left: 0, bottom: 52.0, right: 0)
         self.scrollView.contentInset = insets
         self.scrollView.scrollIndicatorInsets = insets
         
@@ -68,7 +68,7 @@ class ArticleDetailCollectionViewCell: UICollectionViewCell {
         //
         self.categoryLabel.text = article.sectionName
         
-        let readTime = "\(Int(round(article.bodyText.readingTime()))) \(NSLocalizedString("mins read", comment: "Time it takes to read in mins"))"
+        let readTime = "\(Int(round(article.bodyText.readingTime()))) \(NSLocalizedString("min read", comment: "Time it takes to read in mins"))"
 
         if let date = article.publishDate, dateString = date.toString(.Custom("EEEE dd/MM/YYYY")) {
             self.dateLabel.text = dateString + "  |  " + readTime

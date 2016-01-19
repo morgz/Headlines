@@ -41,8 +41,8 @@ class ArticleTableViewCell: UITableViewCell {
         self.mainLabel.text = article.title
         self.categoryLabel.text = article.sectionName
         
-        if let date = article.publishDate {
-            self.dateLabel.text = date.toRelativeString(fromDate: NSDate(), abbreviated: false, maxUnits:2)
+        if let date = article.publishDate, dateString = date.toRelativeString(fromDate: NSDate(), abbreviated: false, maxUnits:2) {
+            self.dateLabel.text = dateString + NSLocalizedString(" ago", comment: " ago")
         }
         
         if let urlString = article.imageUrlString {

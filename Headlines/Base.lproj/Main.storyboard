@@ -22,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="124"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-QZ-8eh" customClass="TopAlignedLabel" customModule="Headlines" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="pku-QZ-8eh" customClass="TopAlignedLabel" customModule="Headlines" customModuleProvider="target">
                                             <rect key="frame" x="17" y="16" width="427" height="62"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="62" id="LuZ-cc-0V6"/>
@@ -38,7 +38,7 @@
                                                 <constraint firstAttribute="height" constant="62" id="bDa-wQ-cc6"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="A day, blah blah, 2006" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-5C-ir4">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="A day, blah blah, 2006" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-5C-ir4">
                                             <rect key="frame" x="17" y="86" width="503" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="DZQ-5U-668"/>
@@ -87,8 +87,8 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TIC-yk-6TQ"/>
                         <barButtonItem image="guardianLogo" id="9lb-gq-JCN"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TIC-yk-6TQ"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="V9b-Kp-Ahd">
                         <nil key="title"/>
@@ -242,18 +242,18 @@
                         </connections>
                     </collectionView>
                     <toolbarItems>
-                        <barButtonItem image="noFavIcon" id="PLh-mv-mHi">
-                            <connections>
-                                <action selector="addRemoveFavourite:" destination="gVy-xW-lPm" id="j5m-2o-LVh"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2wF-7G-3j2"/>
                         <barButtonItem image="guardianLogo" id="MZi-5g-zkI"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="sKB-0D-YBL">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="mFZ-M6-a6G">
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2wF-7G-3j2"/>
+                        <barButtonItem systemItem="action" id="mFZ-M6-a6G">
                             <connections>
                                 <action selector="shareButtonClicked:" destination="gVy-xW-lPm" id="6Uq-Ge-P2X"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="sKB-0D-YBL">
+                        <barButtonItem key="rightBarButtonItem" image="noFavIcon" id="PLh-mv-mHi">
+                            <connections>
+                                <action selector="addRemoveFavourite:" destination="gVy-xW-lPm" id="j5m-2o-LVh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
