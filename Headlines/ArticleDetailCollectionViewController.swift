@@ -20,8 +20,13 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         didSet {
             if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
                 self.currentArticle = articles[indexPath.item]
-                self.formatFavouriteButton()
             }
+            else {
+                self.currentArticle = nil
+            }
+            
+            //Format the button for the new current article
+            self.formatFavouriteButton()
         }
     }
 
@@ -32,21 +37,14 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setToolbarHidden(false, animated: false)
+        
         //Set the title
         self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("Most Recent Articles", comment: "Most Recent Articles") :
                                                                          NSLocalizedString("Favourites", comment: "Favourites")
 
         // Do any additional setup after loading the view.
         self.reloadData()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //Our overview may hide the bars so make sure there not hidden here
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func reloadData() {
@@ -82,11 +80,41 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
             
             //Will I let them add an article???? hmmmm
             if (self.canAddArticle(article)) {
+                
+                let isDelete = article.isFavourite == true
+                
+                //Add or remove the fav from our datasource
                 ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
-                self.formatFavouriteButton()
+                
+                /**
+                *  If it is an 'unfavouriting' and in favs mode then we remove the cell
+                */
+                if isDelete && ArticleManager.sharedInstance.articleMode == .Favourites {
+                    
+                    //The current path is now invalide as it's not longer part of the collection. It will get reset in cellForRow: if we have more.
+                    self.currentIndexPath = nil
+                    
+                    // Stop any interaction while our datasource doesn't match the collection view
+                    self.collectionView?.userInteractionEnabled = false
+                    self.favButton.enabled = false
+                    
+                    // A short delay so the user can see the star change state
+                    delay(0.25, closure: { () -> () in
+                        self.collectionView?.performBatchUpdates({ () -> Void in
+                            self.collectionView?.deleteItemsAtIndexPaths([indexPath])
+                            }, completion: { (success) -> Void in
+                                //renable interaction. Fav button is taking care of when in new cellForRow:
+                                self.collectionView?.userInteractionEnabled = true
+                        })
+                    })
+                }
+                else {
+                    // If we're not in favourite mode we just need to format the button.
+                    self.formatFavouriteButton()
+                }
             }
             else {
-                let alert = UIAlertController(title: "Hire Me", message: "You can only have 3 favourites. To unlock unlimited favourites you have to hire me.", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Hire Me", message: "You can only have 4 favourites. To unlock unlimited favourites you have to hire me.", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "You've got the job", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
@@ -94,7 +122,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     }
     
     func canAddArticle(article:Article) -> Bool {
-        if article.isFavourite == false && ArticleManager.sharedInstance.favouriteArticles?.count == 3 {
+        if article.isFavourite == false && ArticleManager.sharedInstance.favouriteArticles?.count == 4 {
             return false
         }
         else {
@@ -105,9 +133,14 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     func formatFavouriteButton() {
         
         if let article = self.currentArticle {
+            self.favButton.enabled = true
             self.favButton.image = article.isFavourite ? UIImage(named: "favIcon") : UIImage(named: "noFavIcon")
         }
+        else {
+            self.favButton.enabled = false
+        }
     }
+    
 
     /*
     // MARK: - Navigation

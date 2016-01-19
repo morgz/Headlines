@@ -19,7 +19,9 @@ class ArticlesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.setToolbarHidden(false, animated: false)
+        
         //TODO: Remove refresh control when on favourites
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         //self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -37,13 +39,6 @@ class ArticlesTableViewController: UITableViewController {
         self.realmNotification = self.uiRealm.addNotificationBlock { notification, realm in
             self.reloadData()
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func reloadData() {
