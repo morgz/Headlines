@@ -96,7 +96,7 @@
                             <rect key="frame" x="20" y="7" width="560" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="All Articles"/>
+                                <segment title="Most Recent Articles"/>
                                 <segment title="Favourites"/>
                             </segments>
                             <connections>

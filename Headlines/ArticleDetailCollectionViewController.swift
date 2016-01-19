@@ -36,7 +36,7 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
         navigationController?.setToolbarHidden(false, animated: false)
         
         //Set the title
-        self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("All Articles", comment: "All Articles") :
+        self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("Most Recent Articles", comment: "Most Recent Articles") :
                                                                          NSLocalizedString("Favourites", comment: "Favourites")
 
 
