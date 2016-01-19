@@ -38,7 +38,7 @@ final class Article: Object, ResponseObjectSerializable, ResponseCollectionSeria
 //  }
     
     
-    //TODO: Make this safer by checking for the return value before force unwrapping
+    //TODO: Get some tests on this!
     //Mark: Creating a representation from the API
     convenience required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.init()
