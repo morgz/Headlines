@@ -74,8 +74,26 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
 
         if let articles = ArticleManager.sharedInstance.articlesToDisplay, indexPath = self.currentIndexPath {
             let article = articles[indexPath.item]
-            ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
-            self.formatFavouriteButton()
+            
+            //Will I let them add an article???? hmmmm
+            if (self.canAddArticle(article)) {
+                ArticleManager.sharedInstance.addRemoveFromFavourites(article: article)
+                self.formatFavouriteButton()
+            }
+            else {
+                let alert = UIAlertController(title: "Hire Me", message: "You can only have 3 favourites. To unlock unlimited favourites you have to hire me.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "You've got the job", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func canAddArticle(article:Article) -> Bool {
+        if article.isFavourite == false && ArticleManager.sharedInstance.favouriteArticles?.count == 3 {
+            return false
+        }
+        else {
+            return true
         }
     }
     
