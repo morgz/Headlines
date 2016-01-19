@@ -37,21 +37,14 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setToolbarHidden(false, animated: false)
+        
         //Set the title
         self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("Most Recent Articles", comment: "Most Recent Articles") :
                                                                          NSLocalizedString("Favourites", comment: "Favourites")
 
         // Do any additional setup after loading the view.
         self.reloadData()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //Our overview may hide the bars so make sure there not hidden here
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func reloadData() {
