@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Test getting our articles
         self.setupRealm()
-        self.listAllFonts()
         
         return true
     }
