@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import TUSafariActivity
 
 private let reuseIdentifier = "ArticleDetailCell"
 
@@ -31,17 +32,21 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
-        
         //Set the title
         self.title = ArticleManager.sharedInstance.articleMode == .All ? NSLocalizedString("Most Recent Articles", comment: "Most Recent Articles") :
                                                                          NSLocalizedString("Favourites", comment: "Favourites")
 
-
         // Do any additional setup after loading the view.
         self.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Our overview may hide the bars so make sure there not hidden here
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBarHidden = false
+        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func reloadData() {
@@ -61,9 +66,9 @@ class ArticleDetailCollectionViewController: UICollectionViewController {
     //MARK: Sharing
     @IBAction func shareButtonClicked(sender: UIBarButtonItem) {
         
-        if let shareUrl = self.currentArticle?.webUrl {
-            
-            let activityVC = UIActivityViewController(activityItems: [shareUrl], applicationActivities: nil)
+        if let shareUrlString = self.currentArticle?.webUrl, shareUrl = NSURL(string: shareUrlString) {
+            let safariActivity = TUSafariActivity()
+            let activityVC = UIActivityViewController(activityItems: [shareUrl], applicationActivities: [safariActivity])
             self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }

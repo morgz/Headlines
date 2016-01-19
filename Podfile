@@ -8,6 +8,7 @@ target 'Headlines' do
 	pod 'RealmSwift', '~> 0.97'
     pod "SwiftDate", "~> 2.0"
     pod 'Kingfisher', '~> 1.9'
+    pod 'TUSafariActivity', '~> 1.0'
 end
 
 target 'HeadlinesTests' do

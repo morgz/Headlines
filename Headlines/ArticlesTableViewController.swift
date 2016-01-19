@@ -19,17 +19,13 @@ class ArticlesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
 
-        //Get our initial remote items
+        //TODO: Remove refresh control when on favourites
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         //self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-
-        self.refreshControl?.beginRefreshing()
         
+        //Get our initial remote items
+        self.refreshControl?.beginRefreshing()
         ArticleManager.sharedInstance.getRemoteArticles { (response) -> Void in
             self.refreshControl?.endRefreshing()
         }
@@ -41,6 +37,13 @@ class ArticlesTableViewController: UITableViewController {
         self.realmNotification = self.uiRealm.addNotificationBlock { notification, realm in
             self.reloadData()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBarHidden = false
+        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func reloadData() {
